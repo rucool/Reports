@@ -1,0 +1,44 @@
+---
+title: "DMCS Vessel Trip Report"
+format: revealjs
+editor: visual
+---
+
+Number of Trips per Month
+
+{r}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+
+fp <- read_excel("Downloads/Digital Log of Float Plans.xlsx")
+
+fp_mo_sum = fp %>% 
+  mutate(date = as.POSIXct(`Date of Departure`), mo = month(date)) %>%
+  group_by(mo) %>% 
+  summarise(n=n())
+
+#library(ggplot2)
+ggplot(data = fp_mo_sum, aes(x = mo, y = n)) + 
+  geom_bar(stat="identity", fill="cornflowerblue") + 
+  geom_text(aes(label = n), color = "black",size = 8, vjust = -0.2)+
+  labs(x = "Vessel", y = "Number per Month") + 
+  ylim(c(0, max(fp_mo_sum$n)+1))+
+  theme_bw()
+
+Number of Trips per Vessel
+
+{r}
+fp_sum = fp %>% group_by(`Vessel Used`) %>% summarise(n=n())
+
+ggplot(data = fp_sum, aes(x = reorder(`Vessel Used`, n), y = n)) + 
+  geom_bar(stat="identity", fill="cornflowerblue") + 
+  geom_text(aes(label = n), color = "black",size = 8, vjust = -0.2)+
+  labs(x = "Vessel", y = "Number of Trips") + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1)) + 
+  ylim(c(0, max(fp_sum$n)+1))+
+  theme_bw()
+
+
+
