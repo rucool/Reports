@@ -1,0 +1,151 @@
+---
+title: "RUCOOL April Budget Review"
+format: revealjs
+editor: visual
+---
+
+{r}
+library(readxl)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(dplyr)
+library(gt)
+
+pb <- read_excel("Downloads/COOL_03_2025_ProjectBalances.xlsx", sheet=2)
+
+Arete
+
+{r}
+difftime(strptime(pb$`Sponsor End Date`[1], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[1,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-DEP Clams
+
+{r}
+difftime(strptime(pb$`Sponsor End Date`[2], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[2,]) %>%
+  kable_styling(font_size = 20)
+
+REV Y1
+
+{r}
+n=3
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+REV Y2
+
+We did have a NCE
+
+{r}
+n=4
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+WHOI Turbine Hydrodynamics
+
+{r}
+n=5
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-DEP
+
+{r}
+n=6
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-DEP
+
+{r}
+n=7
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+UDel
+
+{r}
+n=8
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+Duke
+
+{r}
+n=9
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-DEP
+
+{r}
+n=10
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+WHOI
+
+{r}
+n=c(11:13)
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+WHOI
+
+{r}
+n=14
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+Invenergy
+
+{r}
+n=15
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-BPU
+
+{r}
+n=16
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+SNJ-DEP
+
+{r}
+n=17
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
