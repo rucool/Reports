@@ -149,3 +149,31 @@ difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("20
 kable(pb[n,]) %>%
   kable_styling(font_size = 20)
 
+WHOI
+
+{r}
+n=18
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+UDel
+
+{r}
+n=19
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 20)
+
+MARACOOS
+
+{r}
+n=c(20:25)
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,]) %>%
+  kable_styling(font_size = 10)
+
+
