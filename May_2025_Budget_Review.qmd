@@ -180,7 +180,7 @@ difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("20
 
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 10)
-
+```
 
 # Maria
 
