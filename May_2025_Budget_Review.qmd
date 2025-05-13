@@ -14,9 +14,12 @@ library(gt)
 library(lubridate)
 
 pb <- read_csv("Downloads/202508 Projects Consolidated View By Task end date(Sheet1).csv")
-pb = filter(pb, `Project Status` %in% "Active")
-pb = dplyr::select(pb, `Project Number`,`Project Description`,`Sponser End Date`,`Principal Investigator`,`Budget`,`Total Actual Cost`,`Commitments`,`Available Balance Without`)
-pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%d/%m/%Y")
+pb1 = filter(pb, `Project Status` %in% "Active")
+pb = dplyr::select(pb1, `Project Number`,`Project Description`,`Sponsor End Date`,`Principal Investigator`,`Budget`,`Total Actual Cost`,`Commitments`,`Available Balance Without Commitments`)
+
+pb1 = dplyr::select(pb1, `Project Number`,`Project Description`,`Sponsor End Date`,`Principal Investigator`,`Budget`,`Commitments`,`Actual Balance Without Commitments`)
+
+pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
 ```
 
 # Under 3 months
@@ -58,7 +61,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
 # CINAR
 
 ```{r}
-n=c(5,7,8)
+n=c(5,7,8,11)
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 `r x`% spent
@@ -66,31 +69,14 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 Medical person still needs to get moved off. Grace summer, Lori Salary
 
 ```{r}
-n=c(5,7,8)
+n=c(5,7,8,11)
 difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
 
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15)
 ```
 
-# New CINAR
-
-```{r}
-n=11
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-`r x`% spent
-
-Getting a NCE?
-
-```{r}
-n=11
-difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
-
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
-# Duke WoW
+# Duke WOW
 
 ```{r}
 n=6
@@ -98,7 +84,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 `r x`% spent
 
-Will be getting another year. Isabella will be on this for two years.
+Will be getting another year? Isabella will be on this for two years.
 
 ```{r}
 n=6
@@ -182,7 +168,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 10)
 ```
 
-# Maria
+# Data to Model
 
 ```{r}
 n=19
@@ -214,18 +200,19 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
 ```
 # Under 6 months
 
-# SOCCOM 1
+# SOCCOM 
 
 ```{r}
-n=22
+n=c(22,27)
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 `r x`% spent
 
-Need to charge another month of Oscar, summer for Quentin, Mya, and Teemer.
+SOCCUM 2: Need to charge another month of Oscar, summer for Quentin, Mya, and Teemer.
+SOCCUM 3: Year 1 of 4
 
 ```{r}
-n=22
+n=c(22,27)
 difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
 
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
@@ -280,23 +267,6 @@ difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("20
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15)
 ```
-# SOCCUM 2
-
-```{r}
-n=27
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-0% spent
-
-4 more years coming
-
-```{r}
-n=27
-difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
-
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
 # RMI Daphne
 
 ```{r}
@@ -329,3 +299,14 @@ difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("20
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15)
 ```
+
+# Gifts Review
+
+# Gifts
+
+```{r}
+n=c(46:50)
+kable(pb1[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+
