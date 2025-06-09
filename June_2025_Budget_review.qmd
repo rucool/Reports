@@ -1,0 +1,311 @@
+---
+title: "RUCOOL June Budget Review"
+format: revealjs
+editor: visual
+---
+
+```{r}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(dplyr)
+library(gt)
+library(lubridate)
+library(readxl)
+
+pb <- read_excel("Downloads/Projects Consolidated View By Task(14).xlsx")
+pb = filter(pb, `Project Status` %in% "Active")
+pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
+```
+# Under 3 months
+
+# CINAR
+
+```{r}
+n=c(1:3,7)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=c(1:3,7)
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Invenergy
+
+```{r}
+n=5
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=5
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# SNJ-DEP
+
+```{r}
+n=6
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=6
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Duke WOW
+
+```{r}
+n=7
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Will be getting another year? Isabella will be on this for two years.
+
+```{r}
+n=7
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# GOMO
+
+```{r}
+n=4
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Leah charging, some travel, Joe G $20K (salary commitment charges 3 months over)
+
+```{r}
+n=4
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# MBON
+
+```{r}
+n=8
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Hugh charging only
+
+```{r}
+n=8
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# MARACOOS
+
+```{r}
+n=c(9:16)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Glider (Aug/Sept), Mike (Jan), Satellite (June), HFR (Nov or Feb), Modeling, ROMS, Data to Model, DAC 
+
+```{r}
+n=c(9:16)
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 10)
+```
+# NASA
+
+```{r}
+n=17
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Subaward commitments. Grad students ($19k) and 2 months summer salary
+
+```{r}
+n=17
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# UDel Hurricane Supplemental
+
+```{r}
+n=18
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Another chunk of money ($17k) from IRA for next hurricane deployment.
+
+```{r}
+n=18
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# UVI
+
+```{r}
+n=19
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=19
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Ramboll
+
+```{r}
+n=20
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Stopwork order
+
+```{r}
+n=20
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# BPU
+
+```{r}
+n=21
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+Fernando 60%, Mike 10%, Julia 75%
+
+```{r}
+n=21
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# SOCCOM
+
+```{r}
+n=c(22)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+SOCCUM 2: Need to charge another month of Oscar, summer for Quentin, Mya, and Teemer. SOCCUM 3: Year 1 of 4
+
+```{r}
+n=c(22)
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) 
+```
+# RIOS
+
+```{r}
+n=23
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=23
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Under 6 months
+
+# SNJ-DEP Ecoglider Phase 1
+
+```{r}
+n=24
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=24
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Cod - Sunrise
+
+```{r}
+n=25
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=25
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# SNJ-DEP RMI Ocean Observing
+
+```{r}
+n=26
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=26
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
+# Seaforestation
+
+```{r}
+n=27
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+```
+`r x`% spent
+
+```{r}
+n=27
+difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), + strptime("2025-04-01", format = "%Y-%m-%d"),units="days")
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+```
