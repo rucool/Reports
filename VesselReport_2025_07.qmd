@@ -12,7 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(lubridate)
 
-fp <- read_excel("Downloads/Digital Log of Float Plans (7).xlsx")
+fp <- read_excel("Downloads/Digital Log of Float Plans (9).xlsx")
 
 fp_mo_sum = fp %>% 
   mutate(date = as.POSIXct(`Date of Departure`), mo = month(date)) %>%
@@ -24,6 +24,7 @@ ggplot(data = fp_mo_sum, aes(x = mo, y = n)) +
   geom_text(aes(label = n), color = "black",size = 8, vjust = -0.2)+
   labs(x = "Month", y = "Number per Month") + 
   ylim(c(0, max(fp_mo_sum$n)+1))+
+  scale_x_continuous(breaks = seq(1, max(fp_mo_sum$mo), 1)) +
   theme_bw() + 
   theme(text = element_text(size=20))
 ```
@@ -31,17 +32,22 @@ ggplot(data = fp_mo_sum, aes(x = mo, y = n)) +
 ## Number of Trips per Vessel
 
 ```{r}
-fp_sum = fp %>% group_by(`Vessel Used`) %>% summarise(n=n())
+fp_sum = fp %>% group_by(`Vessel Used`) %>% 
+  summarise(n=n()) %>% 
+  mutate(group = ifelse(`Vessel Used` %in% c("Soggy Bottom","RV Rutgers",
+                                             "Mullica Explorer", "RV Arabella",
+                                             "Carolina Skiff", "RV Resilience"),
+                        "Rutgers","Other"))
 
 ggplot(data = fp_sum, aes(y = reorder(`Vessel Used`, n), x = n)) + 
-  geom_bar(stat="identity", fill="cornflowerblue") + 
+  geom_bar(stat="identity", aes(fill=group)) + 
   geom_text(aes(label = n), color = "black",
             size = 6, hjust = -0.2)+
   labs(y = "Vessel", x = "Number of Trips") + 
   theme_bw() + 
-  theme(#axis.text.x = element_text(angle = 90, vjust = 0.6),
-        text = element_text(size=20)) + 
-  xlim(c(0, max(fp_sum$n)+1))
+  theme(text = element_text(size=20)) + 
+  xlim(c(0, max(fp_sum$n)+1)) + 
+  scale_fill_manual("Legend", values = c("Rutgers" = "red", "Other" = "cornflowerblue"))
 ```
 
 ## Operations
