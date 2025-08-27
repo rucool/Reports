@@ -1,0 +1,307 @@
+---
+title: "September Budget Review"
+format: revealjs
+editor: visual
+---
+
+{r}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(dplyr)
+library(gt)
+library(lubridate)
+library(readxl)
+
+pb <- read_excel("Downloads/Balance Report 20250826.xlsx", skip=3)
+pb = filter(pb, `Current Project Status Name` %in% "Active") 
+pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
+pb = arrange(pb, `Sponsor End Date`)
+
+difftime_func <- function(n){
+    difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), 
+             + strptime("2025-09-02", format = "%Y-%m-%d"), 
+             units="days")
+  }
+
+Ended but still active
+
+{r}
+n=c(1:2)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+NJDEP 2024 Account being reopened
+
+NOAA Glider Training on hold
+
+{r}
+n=c(1:2)
+difftime_func(n)
+
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 10)
+
+3 months after this month
+
+to Dec. 2025
+
+Hurricane Supp.
+
+{r}
+n=9
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+$70k coming for new account. Mike charging 20%, could add another glider person in Aug.
+
+{r}
+n=9
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+UVI (837340)
+
+{r}
+n=5
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent.
+
+Brian and Jess can charge this out.
+
+{r}
+n=5
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+Ramboll (837630)
+
+{r}
+n=6
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Stopwork order. Daphne summer and then the remainder goes back.
+
+{r}
+n=6
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+BPU Wind (837784)
+
+{r}
+n=7
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Fernando 60%, Mike 10%, Julia 100% until Aug. 31. Summer still needs to be posted. Will revisit end of July.
+
+{r}
+n=7
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+SOCCOM (830431, 838815)
+
+{r}
+n=c(3,8)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+SOCCOM 2: Need to charge another month of Oscar, summer for Quintin, Mya, and Teemer.
+
+SOCCOM 3: Year 1 of 4
+
+{r}
+n=c(3,8)
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 13) 
+
+Arete (839178)
+
+{r}
+n=9
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+{r}
+n=9
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+RMI Ecoglider Phase 1 (832349)
+
+{r}
+n=10
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+100% Delphine, 65% Lori, 60% Jess, 70% Brian charging. Jake salary, fall salary and tuition for Sam, Ashley, and Izzy tuition, Lauren summer. Still more to spend (~$60-70k)
+
+{r}
+n=10
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+Ørsted Cod (838999)
+
+Ordering batteries for next season. Salary for Nicole, Dave, Kaycee
+
+{r}
+n=c(11)
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+{r}
+n=c(11)
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+RMI Ocean Observing (834812)
+
+{r}
+n=12
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+All for subcontracts (~$53k)
+
+{r}
+n=12
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+WOW (833804)
+
+{r}
+n=13
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Sam?
+
+{r}
+n=13
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+Ørsted OCW01 Data Archival (839573)
+
+{r}
+n=15
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Salary for Kaycee, Motz, Tim, Smith, Delphine, Joey
+
+{r}
+n=15
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+6 months after this month
+
+to Mar. 2026
+
+Seaforestation (836582)
+
+{r}
+n=14
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Charge Aug. for Oscar (~45k), travel, Jess 40% salary, Joe glider camp. User fee still needs to be charged ($20k)
+
+{r}
+n=14
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+WAP UConn (837205)
+
+{r}
+n=16
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Mostly students (Teemer, Myam Quintin) and people we send to Antarctica. Account was set up late
+
+{r}
+n=16
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+Tufts (837207)
+
+{r}
+n=17
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+{r}
+n=17
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+BOEMRE NYB Sands (832319)
+
+{r}
+n=17
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Tim and Smith helping with ERDDAP
+
+{r}
+n=17
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
+ASOW (837206) 
+
+{r}
+n=19
+x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
+
+r x% spent
+
+Tim and Smith helping with ERDDAP
+
+{r}
+n=19
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15)
+
