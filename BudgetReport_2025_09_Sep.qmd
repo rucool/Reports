@@ -36,7 +36,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Account being reopened
+Received NCE. Account being reopened
 
 ```{r}
 n=c(1)
@@ -55,7 +55,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-on hold
+on hold. Getting NCE for a year. 
 
 ```{r}
 n=c(2)
@@ -74,7 +74,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent.
 
-Brian and Jess can charge this out.
+Ended on Friday's payroll post. 
 
 ```{r}
 n=5
@@ -92,7 +92,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Stopwork order. Daphne summer and then the remainder goes back.
+Remainder goes back.
 
 ```{r}
 n=6
@@ -110,7 +110,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Fernando 60%, Mike 10%, Julia 100% until Aug. 31.
+Ended on Friday's payroll post. 
 
 ```{r}
 n=7
@@ -132,9 +132,9 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-SOCCOM 2 (ended): Need to charge another month of Oscar, summer for Quintin, Mya, and Teemer.
+SOCCOM 2 (ended): Will be spent out next payroll.
 
-SOCCOM 3: Year 1 of 4
+SOCCOM 3: Year 1 of 4. Just got Year 2 on 9/2 ($143k), being processed. 
 
 ```{r}
 n=c(3,8)
@@ -150,7 +150,9 @@ n=9
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
-`r x`% spent
+100% spent.   
+
+Spent out as of last payroll
 
 ```{r}
 n=9
@@ -168,7 +170,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-100% Delphine, 65% Lori, 60% Jess, 70% Brian charging. Jake salary, fall salary and tuition for Sam, Ashley, and Izzy tuition, Lauren summer. Still more to spend (\~\$60-70k)
+100% Delphine, 95% Lori, 50% Jess, 70% Brian charging, 35% Dave, 10% Waite. Jake salary, fall salary and tuition for Sam, Ashley, and Izzy tuition, Lauren summer. 
 
 ```{r}
 n=10
@@ -177,7 +179,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15)
 ```
 
-## Ørsted Cod (838999)
+## Ørsted Sunrise Cod (838999)
 
 Ordering batteries for next season. Salary for Nicole, Dave, Kaycee
 
@@ -222,7 +224,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Sam?
+Do we think we're getting another year?
 
 ```{r}
 n=13
@@ -240,7 +242,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Salary for Kaycee, Motz, Tim, Smith, Delphine, Joey
+Salary for Kaycee (35-70%), Motz, Tim (40%), Smith (40%), Delphine (11 d), Joey (50%)
 
 ```{r}
 n=15
@@ -258,7 +260,7 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Charge Aug. for Oscar (\~45k), travel, Jess 40% salary, Joe glider camp. User fee still needs to be charged (\$20k)
+Travel, Jess (40-30%), Dave (15%), Lori (5%). Will be getting more money. 
 
 ```{r}
 n=14
@@ -323,7 +325,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15)
 ```
 
-## ASOW (837206) 
+## ASOW RUMFS Lidar (837206) 
 
 ```{r}
 n=19
@@ -331,6 +333,8 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
+
+Carol will fix this overcharge. 
 
 ```{r}
 n=19
