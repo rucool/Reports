@@ -1,0 +1,100 @@
+---
+title: "Vessel Trip Report September 2025"
+format: revealjs
+editor: visual
+---
+
+## Number of Trips per Month
+
+```{r}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+
+fp <- read_excel("Downloads/Digital Log of Float Plans (5).xlsx")
+
+fp_mo_sum = fp %>% 
+  mutate(date = as.POSIXct(`Date of Departure`), mo = month(date)) %>%
+  group_by(mo) %>% 
+  summarise(n=n())
+
+ggplot(data = fp_mo_sum, aes(x = mo, y = n)) + 
+  geom_bar(stat="identity", fill="cornflowerblue") + 
+  geom_text(aes(label = n), color = "black",size = 8, vjust = -0.2)+
+  labs(x = "Month", y = "Number per Month") + 
+  ylim(c(0, max(fp_mo_sum$n)+1))+
+  scale_x_continuous(breaks = seq(1, max(fp_mo_sum$mo), 1)) +
+  theme_bw() + 
+  theme(text = element_text(size=20))
+```
+
+## Number of Trips per Vessel
+
+```{r}
+fp_sum = fp %>% group_by(`Vessel Used`) %>% 
+  summarise(n=n()) %>% 
+  mutate(group = ifelse(`Vessel Used` %in% c("Soggy Bottom","RV Rutgers",
+                                             "Mullica Explorer", "RV Arabella",
+                                             "Carolina Skiff", "RV Resilience"),
+                        "Rutgers","Other"))
+
+ggplot(data = fp_sum, aes(y = reorder(`Vessel Used`, n), x = n)) + 
+  geom_bar(stat="identity", aes(fill=group)) + 
+  geom_text(aes(label = n), color = "black",
+            size = 6, hjust = -0.2)+
+  labs(y = "Vessel", x = "Number of Trips") + 
+  theme_bw() + 
+  theme(text = element_text(size=20)) + 
+  xlim(c(0, max(fp_sum$n)+1)) + 
+  scale_fill_manual("Legend", values = c("Rutgers" = "red", "Other" = "cornflowerblue"))
+```
+
+## Operations
+
+```{r}
+fp_sum = fp %>% group_by(Operations) %>% 
+  summarise(n=n()) %>% 
+  mutate(group = ifelse(Operations %in% c("Gliders", "Gliders, Net Tows",
+                                          "Glider, Jaia Bot",
+                                          "Diving","Kay Cruise", "Rock Hoppers"),
+                        "DMCS",ifelse(Operations %in% 
+                                        c("Facilities Maintenance","Class"), 
+                                      "Mixed","RUMFS/JCNEER")),
+         Operations = ifelse(Operations %in% "Facilities Maintenance",
+                             "Facilities/Vessel Maintenance",Operations))
+
+ggplot(data = fp_sum, aes(y = reorder(Operations, n), x = n)) + 
+  geom_bar(stat="identity", aes(fill=group)) + 
+  geom_text(aes(label = n), color = "black",
+            size = 6, hjust = -0.2)+
+  labs(y = "Operations", x = "Number of Trips") + 
+  theme_bw() + 
+  theme(#axis.text.x = element_text(angle = 90, vjust = 0.6),
+        text = element_text(size=20)) + 
+  xlim(c(0, max(fp_sum$n)+1))+ 
+  scale_fill_manual("Legend", values = c("DMCS" = "gold", "Mixed" = "grey", 
+  "RUMFS/JCNEER" = "cornflowerblue"))
+```
+## Incident Logs
+
+```{r}
+library(readxl)
+library(dplyr)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+
+il <- read_excel("Downloads/RU Marine Ops HSE Records (4).xlsx", 
+                 sheet=1, skip=1)
+il = il[,c(1:12,14)]
+  
+kbl_table = kbl(il, format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 10)
+
+highlight_rows <- which(il[,13] == "Closed")
+
+kbl_table %>%
+      row_spec(row = highlight_rows, background = "darkseagreen1") %>%
+      row_spec(row = 0, color = "darkorchid4", background = "thistle2") 
+```
