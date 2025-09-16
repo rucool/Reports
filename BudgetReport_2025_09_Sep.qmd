@@ -13,194 +13,125 @@ library(gt)
 library(lubridate)
 library(readxl)
 
-pb <- read_excel("Downloads/Balance Report 20250826.xlsx", skip=3)
+pb <- read_excel("~/Downloads/COOL 20250915 Projects Consolidated .xlsx", skip=3)
+  #read_excel("~/Downloads/Balance Report 20250826 (1).xlsx", skip=3)
 pb = filter(pb, `Current Project Status Name` %in% "Active") 
 pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
 pb = arrange(pb, `Sponsor End Date`)
 
 difftime_func <- function(n){
     difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), 
-             + strptime("2025-09-09", format = "%Y-%m-%d"), 
+             + strptime("2025-09-16", format = "%Y-%m-%d"), 
              units="days")
   }
 ```
 
-# Ended but still active
+## Ended but still active
 
-## NJDEP 2024 (838607)
+**OceanWakes (837326)** - NCE approved, subcontract delayed.  
+**NJDEP 2024 (838607)** - Received NCE. Account being reopened
+**NOAA Glider Training (839038)** - Getting NCE for a year
 
 ```{r}
-n=c(1)
+n=c(1:3)
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-Received NCE. Account being reopened
-
 ```{r}
-n=c(1)
+n=c(1:3)
 difftime_func(n)
 
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
-
-## NOAA Glider Training (839038)
-
-```{r}
-n=c(2)
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-
-`r x`% spent
-
-on hold. Getting NCE for a year. 
-
-```{r}
-n=c(2)
-difftime_func(n)
-
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
-
-## UVI (837340)
-
-```{r}
-n=5
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-
-`r x`% spent.
-
-Ended on Friday's payroll post. 
-
-```{r}
-n=5
-difftime_func(n)
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
-
-## Ramboll (837630)
-
-```{r}
-n=6
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-
-`r x`% spent
-
-Remainder goes back.
-
-```{r}
-n=6
-difftime_func(n)
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
-```
-
-## BPU Wind (837784)
-
-```{r}
-n=7
-x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
-```
-
-`r x`% spent
-
-Ended on Friday's payroll post. 
-
-```{r}
-n=7
-difftime_func(n)
-kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 # 3 months after this month
 
 to Dec. 2025
 
-## SOCCOM (830431, 838815)
+## SOCCOM (838815)
 
 ```{r}
-n=c(3,8)
+n=c(4)
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-SOCCOM 2 (ended): Will be spent out next payroll.
-
-SOCCOM 3: Year 1 of 4. Just got Year 2 on 9/2 ($143k), being processed. 
+SOCCOM 3: Just got Year 2 on 9/2 (\$143k), being processed
 
 ```{r}
-n=c(3,8)
+n=c(4)
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 13) 
+  kable_styling(font_size = 15)  %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## Arete (839178)
 
 ```{r}
-n=9
+n=5
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
-100% spent.   
+`r x`% spent
 
 Spent out as of last payroll
 
 ```{r}
-n=9
+n=5
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## RMI Ecoglider Phase 1 (832349)
 
 ```{r}
-n=10
+n=6
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-100% Delphine, 95% Lori, 50% Jess, 70% Brian charging, 35% Dave, 10% Waite. Jake salary, fall salary and tuition for Sam, Ashley, and Izzy tuition, Lauren summer. 
+100% Delphine, 95% Lori, 50% Jess, 70% Brian charging, 35% Dave, 10% Waite. Jake salary, fall salary and tuition for Sam, Ashley, and Izzy tuition, Lauren summer.
 
 ```{r}
-n=10
+n=6
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## Ørsted Sunrise Cod (838999)
 
-Ordering batteries for next season. Salary for Nicole, Dave, Kaycee
-
 ```{r}
-n=c(11)
+n=c(7)
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
-`r x`% spent
+`r x`% spent. 
+
+Ordering batteries for next season. Salary for Nicole, Dave, Kaycee
 
 ```{r}
-n=c(11)
+n=c(7)
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## RMI Ocean Observing (834812)
 
 ```{r}
-n=12
+n=8
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
@@ -209,34 +140,35 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 All for subcontracts (\~\$53k)
 
 ```{r}
-n=12
+n=8
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## WOW (833804)
 
 ```{r}
-n=13
+n=9
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-Do we think we're getting another year?
-
+Unknown if we will be getting another year  
 ```{r}
-n=13
+n=9
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## Ørsted OCW01 Data Archival (839573)
 
 ```{r}
-n=15
+n=11
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
@@ -245,28 +177,30 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 Salary for Kaycee (35-70%), Motz, Tim (40%), Smith (40%), Delphine (11 d), Joey (50%)
 
 ```{r}
-n=15
+n=11
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## Seaforestation (836582)
 
 ```{r}
-n=14
+n=10
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-Travel, Jess (40-30%), Dave (15%), Lori (5%). Will be getting more money. 
+Travel, Jess (40-30%), Dave (15%), Lori (5%). Will be getting more money.
 
 ```{r}
-n=14
+n=10
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 # 6 months after this month
@@ -276,7 +210,7 @@ to Mar. 2026
 ## WAP UConn (837205)
 
 ```{r}
-n=16
+n=12
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
@@ -285,62 +219,67 @@ x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 Mostly students (Teemer, Myam Quintin) and people we send to Antarctica. Account was set up late
 
 ```{r}
-n=16
+n=12
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## MOCEAN (837207)
 
 ```{r}
-n=17
+n=13
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
-`r x`% spent
+`r x`% spent.   
+Money for Sarah and Daphne  
 
 ```{r}
-n=17
+n=13
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 ## BOEM NYB Sands (832319)
 
 ```{r}
-n=18
+n=14
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-Tim and Smith helping with ERDDAP
+Tim (40%) and Smith (40%) helping with ERDDAP
 
 ```{r}
-n=18
+n=14
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
-## ASOW RUMFS Lidar (837206) 
+## ASOW RUMFS Lidar (837206)
 
 ```{r}
-n=19
+n=15
 x = format((pb$`Total Actual Cost`[n]/pb$Budget[n])*100, digits = 2)
 ```
 
 `r x`% spent
 
-Carol will fix this overcharge. 
+Roland
 
 ```{r}
-n=19
+n=15
 difftime_func(n)
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
-  kable_styling(font_size = 15)
+  kable_styling(font_size = 15)  %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
 # The End
