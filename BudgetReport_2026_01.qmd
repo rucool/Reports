@@ -1,0 +1,205 @@
+---
+title: "Jan. Budget Review"
+format: revealjs
+editor: visual
+---
+
+```{r}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(dplyr)
+library(gt)
+library(lubridate)
+library(readxl)
+
+pb <- read_excel("~/Downloads/20260113 COOL Balances.xlsx", skip=3)
+  #read_excel("~/Downloads/Balance Report 20250826 (1).xlsx", skip=3)
+#pb = filter(pb, `Current Project Status Name` %in% "Active") 
+pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
+pb = arrange(pb, `Sponsor End Date`)
+pb = filter(pb, `Sponsor End Date` > "2026-01-01") %>%
+  dplyr::select(-`Current Project Manager`)
+pb$Cost = pb$`Raw Cost` # names change in this file
+            
+difftime_func <- function(n){
+    difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), 
+             + strptime("2026-01-13", format = "%Y-%m-%d"), 
+             units="days")
+  }
+```
+
+# 3 Months
+
+April 2026
+
+## WAP UConn (837205)
+
+```{r}
+n=1
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent
+
+Year 1 of 4 years. Mostly students (Teemer, Mya, Quintin) and people we send to Antarctica.
+
+```{r}
+n=1
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## MOCEAN (837207)
+
+```{r}
+n=3
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent.
+
+Remaining goes to Sarah and Daphne
+
+```{r}
+n=3
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## BOEMRE NYB Sands (832319)
+
+```{r}
+n=4
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent.
+
+Mike Smith will be charged here (TBD maybe 40% starting Jan.), Going to ask for NCE.
+
+```{r}
+n=4
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## ASOW Lidar at RUMFS (837206)
+
+```{r}
+n=5
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent.
+
+RUMFS can't use it, Mike will spend it out.
+
+```{r}
+n=5
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## WHOI wind wakes Nantucket Shoals
+
+```{r}
+n=6
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent
+
+```{r}
+n=6
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## 6 months
+July 2026
+
+
+## UDel CAREER
+
+```{r}
+n=7
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent
+
+```{r}
+n=7
+difftime_func(n)
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## 2024 NJDEP
+
+```{r}
+n=9
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent
+
+Spending it on the 2025 deployment. Need to do user fee. Put Dave, Nicole, Brian, Lori at 10% each for next few months.
+
+```{r}
+n=9
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## MBON
+
+```{r}
+n=12
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent
+
+Will have to talk with Hugh.
+
+```{r}
+n=12
+round(difftime_func(n))
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 15) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## Cod Monitoring at 
+
+```{r}
+n=c(8,10,11,13,14)
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent.
+
+SRW Y1 (838999), REV Y1(836764), REV Y2 (836765), REV Y3 (840787) & SRW Y2 (840788) 
+
+```{r}
+n=c(8,10,11,13,14)
+round(difftime_func(n)[1])
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 12) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
