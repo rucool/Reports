@@ -19,12 +19,12 @@ pb <- read_excel("~/Downloads/20260113 COOL Balances.xlsx", skip=3)
 pb$`Sponsor End Date` = as.POSIXct(pb$`Sponsor End Date`, format = "%m/%d/%Y")
 pb = arrange(pb, `Sponsor End Date`)
 pb = filter(pb, `Sponsor End Date` > "2026-01-01") %>%
-  dplyr::select(-`Current Project Manager`)
-pb$Cost = pb$`Raw Cost` # names change in this file
+  dplyr::select(-`Current Project Manager`,-`Current Project Status Name`)
+pb = pb %>% rename(Cost = `Raw Cost`) #pb$Cost = pb$`Raw Cost` # names change in this file
             
 difftime_func <- function(n){
     difftime(strptime(pb$`Sponsor End Date`[n], format = "%Y-%m-%d"), 
-             + strptime("2026-01-13", format = "%Y-%m-%d"), 
+             + strptime("2026-01-15", format = "%Y-%m-%d"), 
              units="days")
   }
 ```
@@ -80,7 +80,7 @@ x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent.
 
-Mike Smith will be charged here (TBD maybe 40% starting Jan.), Going to ask for NCE.
+Motz asked for NCE. Mike Smith will be charged here (TBD maybe 40% starting Jan.),
 
 ```{r}
 n=4
@@ -109,7 +109,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
       row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
-## WHOI wind wakes Nantucket Shoals
+## Nantucket Shoals (837326)
 
 ```{r}
 n=6
@@ -127,10 +127,10 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
 ```
 
 ## 6 months
+
 July 2026
 
-
-## UDel CAREER
+## Moffet CAREER (829976)
 
 ```{r}
 n=7
@@ -141,13 +141,13 @@ x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
 
 ```{r}
 n=7
-difftime_func(n)
+round(difftime_func(n))
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 15) %>%
       row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
-## 2024 NJDEP
+## 2024 NJDEP (838607)
 
 ```{r}
 n=9
@@ -156,7 +156,7 @@ x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Spending it on the 2025 deployment. Need to do user fee. Put Dave, Nicole, Brian, Lori at 10% each for next few months.
+Spending it on the 2025 deployment. Steve did user fee. Put Dave, Nicole, Brian, Lori at 10% each for next few months.
 
 ```{r}
 n=9
@@ -166,7 +166,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
       row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
-## MBON
+## MBON (839115)
 
 ```{r}
 n=12
@@ -175,7 +175,7 @@ x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent
 
-Will have to talk with Hugh.
+Hugh salary (28% Jan-June).
 
 ```{r}
 n=12
@@ -185,7 +185,7 @@ kable(pb[n,], format.args = list(big.mark = ",")) %>%
       row_spec(row = 0, color = "navy", background = "lightcyan")
 ```
 
-## Cod Monitoring at 
+## Cod Monitoring
 
 ```{r}
 n=c(8,10,11,13,14)
@@ -194,10 +194,29 @@ x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
 
 `r x`% spent.
 
-SRW Y1 (838999), REV Y1(836764), REV Y2 (836765), REV Y3 (840787) & SRW Y2 (840788) 
+REV Y1(836764), REV Y2 (836765), SRW Y1 (838999), REV Y3 (840787) & SRW Y2 (840788)
 
 ```{r}
 n=c(8,10,11,13,14)
+round(difftime_func(n)[1])
+kable(pb[n,], format.args = list(big.mark = ",")) %>%
+  kable_styling(font_size = 12) %>%
+      row_spec(row = 0, color = "navy", background = "lightcyan")
+```
+
+## MARACOOS
+
+```{r}
+n=c(15:21)
+x = format((pb$Cost[n]/pb$Budget[n])*100, digits = 2)
+```
+
+`r x`% spent.   
+
+Glider (831556), Mike (831557), Satellite (831558), HFR (831559), Data to Model (831936)
+
+```{r}
+n=c(15:21)
 round(difftime_func(n)[1])
 kable(pb[n,], format.args = list(big.mark = ",")) %>%
   kable_styling(font_size = 12) %>%
