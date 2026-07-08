@@ -13,7 +13,7 @@ library(dplyr)
 library(lubridate)
 library(gridExtra)
 
-fp <- read_excel("~/Downloads/Digital Log of Float Plans (20).xlsx") %>% 
+fp <- read_excel("~/Downloads/Digital Log of Float Plans (33).xlsx") %>% 
   mutate(date = as.POSIXct(`Date of Departure`), mo = month(date), yr = year(date))
 
 fp_mo_sum = fp %>%
@@ -62,9 +62,10 @@ fp_sum = fp %>% filter(yr %in% 2026) %>%
                         "UDel", group),
          group = ifelse(`Vessel Used` %in% c("zodiac","Zodiac", "RHIB Hadar"), 
                         "Palmer", group),
-         group = ifelse(`Vessel Used` %in% c("RV James W. Joseph","NJDEP"), 
+         group = ifelse(`Vessel Used` %in% c("RV James W. Joseph","NJDEP",
+                                             "NJDEP James Joseph"), 
                         "NJDEP", group),
-         group = ifelse(grepl("FV", `Vessel Used`), "FV", group))
+         group = ifelse(grepl(c("FV","F/V"), `Vessel Used`), "FV", group))
 
 p1 = ggplot(data = fp_sum, aes(y = reorder(`Vessel Used`, n), x = n)) + 
   geom_bar(stat="identity", aes(fill=group)) + 
@@ -90,10 +91,10 @@ p2 = ggplot(data = fp_sum2, aes(x = reorder(group, n2), y = n2)) +
   geom_bar(stat="identity", aes(fill=group))+ 
   labs(x = "Vessel Group", y = "Number of Trips") + 
   geom_text(aes(label = n2), color = "black",
-            size = 5, vjust = -0.2)+
+            size = 4, vjust = -0.2)+
   theme_bw() + 
   theme(text = element_text(size=12),
-        axis.text.x = element_text(angle = 65, vjust = 0.5, hjust = 0.5)) + 
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.5)) + 
   scale_fill_manual("Legend", 
                     values = c("Rutgers" = "#CC6677", "MOTE" = "#DDCC77",
                                "UDel" = "#888888", "Other" = "#332288",
@@ -122,7 +123,7 @@ fp_sum = fp %>% filter(yr %in% 2026) %>%
                                         c("Facilities Maintenance","Class"), 
                                       "Mixed","RUMFS/JCNEER")),
          group = ifelse(Operations %in% c("Clam Dredge","Oyster Dredge",
-                                          "Patent Tongs"), "HSRL",group),
+                                          "Patent Tong", "Oyster Dredge, Patent Tong"), "HSRL",group),
                         Operations = ifelse(Operations %in% "Facilities Maintenance",
                              "Facilities/Vessel Maintenance",Operations))
 
